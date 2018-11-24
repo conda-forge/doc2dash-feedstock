@@ -1,7 +1,7 @@
 {% set name = "doc2dash" %}
-{% set version = "2.2.0" %}
+{% set version = "2.3.0" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "09cbd5ca57848e9ba40c25c693a1801e11b6aeb87770f5c764d4ad1742a7ea14" %}
+{% set hash_value = "8485fd8508c6385551e8bf4f0b7c8650ce2def4a6b6a1dfeba3d5e9cfbc6c891" %}
 
 package:
   name: '{{ name|lower }}'
