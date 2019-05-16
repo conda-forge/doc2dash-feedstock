@@ -17,30 +17,36 @@ build:
   number: 0
   entry_points:
     - doc2dash = doc2dash.__main__:main
-  script: python setup.py install  --single-version-externally-managed --record=record.txt
+  script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
-  build:
+  host:
     - python
-    - setuptools
-
+    - pip
+    - setuptools>=40.6.0
+    - wheel
   run:
     - python
-    - sphinx ==1.6.2
-    - attrs ==17.2.0
-    - beautifulsoup4 ==4.6.0
-    - click ==6.7
-    - colorama ==0.3.9
-    - lxml ==3.8.0
-    - six ==1.10.0
-    - zope.interface ==4.4.1
+    - sphinx
+    - attrs
+    - beautifulsoup4
+    - click
+    - colorama
+    - six
+    - zope.interface
 
 test:
   imports:
     - doc2dash
     - doc2dash.parsers
+  source_files:
+    - tests
   commands:
-    - doc2dash --help
+    - pytest
+  requres:
+    - pytest
+    - mock
+    - coverage
 
 about:
   home: https://pypi.org/project/doc2dash/
