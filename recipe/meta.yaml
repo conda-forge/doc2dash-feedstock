@@ -34,6 +34,7 @@ requirements:
     - colorama
     - six
     - zope.interface
+    - pytest
 
 test:
   imports:
