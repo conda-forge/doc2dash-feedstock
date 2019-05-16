@@ -34,7 +34,6 @@ requirements:
     - colorama
     - six
     - zope.interface
-    - pytest
 
 test:
   imports:
@@ -44,7 +43,7 @@ test:
     - tests
   commands:
     - pytest
-  requres:
+  requires:
     - pytest
     - mock
     - coverage
