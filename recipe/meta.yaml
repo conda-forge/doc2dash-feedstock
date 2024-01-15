@@ -23,7 +23,7 @@ requirements:
     - pip
     - python >=3.8
   run:
-    - attrs >=21.3
+    - attrs >=23.2
     - beautifulsoup4
     - click
     - python >=3.8
