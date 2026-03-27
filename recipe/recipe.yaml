@@ -1,19 +1,26 @@
-{% set version = "3.1.0" %}
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "3.1.0"
+  python_check_max: "3.14"
 
 package:
   name: doc2dash
-  version: {{ version }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/d/doc2dash/doc2dash-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/d/doc2dash/doc2dash-${{ version }}.tar.gz
   sha256: 37f61c8d8f6a955d2466b9c073eb2bff44cc54352bf817afb48a3ac8aef6d594
 
 build:
-  number: 1
+  number: 2
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
-  entry_points:
-    - doc2dash = doc2dash.__main__:main
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps --disable-pip-version-check
+  python:
+    entry_points:
+      - doc2dash = doc2dash.__main__:main
 
 requirements:
   host:
@@ -21,37 +28,43 @@ requirements:
     - hatch-vcs
     - hatchling
     - pip
-    - python {{ python_min }}
+    - python ${{ python_min }}.*
   run:
     - attrs >=23.2
     - beautifulsoup4
     - click
-    - python >={{ python_min }}
+    - python >=${{ python_min }}
     - rich
 
-test:
-  source_files:
-    - tests
-  requires:
-    - pip
-    - pytest-cov
-    - python {{ python_min }}
-  imports:
-    - doc2dash
-  commands:
-    - pip check
-    - doc2dash --version
-    - doc2dash --help
-    - pytest -vv --cov=doc2dash --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=99
+tests:
+  - python:
+      imports: doc2dash
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - files:
+      source:
+        - tests/
+    requirements:
+      run:
+        - pytest-cov
+        - python ${{ python_min }}.*
+    script:
+      - doc2dash --version | ${{ "grep -iE" if unix else "findstr /c" }} "${{ version | replace('.', '\\.') }}$"
+      - doc2dash --help
+      - coverage run --source=doc2dash --branch -m pytest -vv --tb=long --color=yes
+      - coverage report --show-missing --skip-covered --fail-under=99
 
 about:
   summary: |
     doc2dash is an extensible Documentation Set (docset) generator that helps you
     to have documentation for all your favorite APIs in Dash.app-compatible API browsers.
-  home: https://doc2dash.hynek.me
   license: MIT
   license_file: LICENSE
-  dev_url: https://github.com/hynek/doc2dash
+  homepage: https://pypi.org/project/doc2dash
+  repository: https://github.com/hynek/doc2dash
+  documentation: https://doc2dash.hynek.me
   description: |
     An API browser is an application that runs locally on your computer and allows
     you to search various API docs by pressing a key combination and starting to
