@@ -3,7 +3,7 @@ About doc2dash-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/doc2dash-feedstock/blob/main/LICENSE.txt)
 
-Home: https://doc2dash.hynek.me/
+Home: https://pypi.org/project/doc2dash
 
 Package license: MIT
 
@@ -11,6 +11,8 @@ Summary: doc2dash is an extensible Documentation Set (docset) generator that hel
 to have documentation for all your favorite APIs in Dash.app-compatible API browsers.
 
 Development: https://github.com/hynek/doc2dash
+
+Documentation: https://doc2dash.hynek.me/
 
 An API browser is an application that runs locally on your computer and allows
 you to search various API docs by pressing a key combination and starting to
