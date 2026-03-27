@@ -62,8 +62,9 @@ about:
     to have documentation for all your favorite APIs in Dash.app-compatible API browsers.
   license: MIT
   license_file: LICENSE
-  homepage: https://doc2dash.hynek.me
+  homepage: https://pypi.org/project/doc2dash
   repository: https://github.com/hynek/doc2dash
+  documentation: https://doc2dash.hynek.me
   description: |
     An API browser is an application that runs locally on your computer and allows
     you to search various API docs by pressing a key combination and starting to
