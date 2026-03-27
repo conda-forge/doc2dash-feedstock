@@ -49,7 +49,7 @@ tests:
     requirements:
       run:
         - pytest-cov
-        - python ${{ python_min }}
+        - python ${{ python_min }}.*
     script:
       - doc2dash --version | ${{ "grep -iE" if unix else "findstr /c" }} "${{ version | replace('.', '\\.') }}$"
       - doc2dash --help
